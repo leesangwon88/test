@@ -1,0 +1,540 @@
+#head {
+	position: relative;
+	padding: 13px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #00ba91;
+	background: #f9f9f9;
+}
+
+#head h1 {
+	
+}
+
+#head h1 a {
+	font-size: 16px;
+	font-weight: bold;
+	color:#00ba91;
+	text-decoration: none;
+}
+
+#head h1 a.title {
+	margin-right: 7px;
+	color:#111;
+}
+
+#head .nev {
+position: absolute;
+top: 16px;
+right: 10px;
+}
+
+#head .nev.login {
+top: 11px;
+}
+
+@media (max-width: 400px) {
+	#head {
+		height: 60px;
+		text-align: center;
+	}
+	
+	#head .nev {
+		top: 60px;
+	}
+	
+	#head .nev.login {
+		top: 55px;
+	}
+}
+
+.nev a.btn { 
+	padding: 7px 10px;
+	text-decoration: none;
+	background: #ccc;
+	color:#fff;
+	font-weight: bold;
+	border-radius: 5px;
+	font-size: 12px;
+}
+
+.nev a.menu {
+	background: #00bcd4;
+}
+
+.nev a.menu:hover {
+	background: #069fb3;
+}
+
+.nev a.logout {
+	background: #fb7b7b;
+}
+
+.nev a.logout:hover {
+	background: #d05c5c;
+}
+
+.nev a.login, .nev a.upload {
+	background: #03a9f4;
+}
+
+.nev a.login:hover, .nev a.upload:hover {
+	background: #068bc7;
+}
+
+.nev .myinfo {
+	
+}
+
+.nev a.myinfo  {
+	display: inline-block;
+	margin-right:10px;
+	text-decoration: none;
+}
+
+.nev a.myinfo span {
+	color:#111;
+}
+
+.nev .myinfo img {
+    margin-top: -5px;
+	vertical-align: middle;
+	border-radius:50%;
+}
+
+
+.search_area {
+
+}
+
+.search_form {
+	position: relative;
+	padding: 10px;
+}
+
+.search_form input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 3px solid #00ba91;
+    border-radius: 10px;
+    line-height: 37px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search_form button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width:60px;
+	height:45px;
+	border: none;
+	background: #00ba91;
+	color: #fff;
+	border-radius: 0 10px 10px 0;
+	cursor: pointer;
+	font-weight: bold;
+    font-size: 16px;
+}
+
+.search_form button:hover {
+	background: #018265;
+}
+
+.search_area .tag_list {
+	padding:0 20px;
+	text-align: center;
+}
+
+.tag_list a {
+    display: inline-block;
+    padding: 5px 8px;
+    margin: 3px 1px;
+    background: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.tag_list a:hover {
+	background: #00ba91;
+}
+
+
+.photo_list { 
+	margin-top: 20px;
+}
+
+.photo_list li {
+	float:left;
+	position: relative;
+	width: 50%;
+	padding-bottom: 50%;
+	overflow: hidden;
+}
+
+@media (min-width: 610px) {
+	
+	.photo_list {
+		width: 600px;
+		margin: 20px auto;
+	}
+
+	.photo_list li {
+		width: 200px;
+		height: 200px;
+		padding-bottom:0;	
+	}
+}
+@media (min-width: 810px) {
+	.photo_list {
+		width: 800px;
+	}
+}
+
+@media (min-width: 1010px) {
+	.photo_list {
+		width: 1000px;
+	}
+}
+
+@media (min-width: 1210px) {
+	.photo_list {
+		width: 1200px;
+	}
+}
+
+@media (min-width: 1410px) {
+	.photo_list {
+		width: 1400px;
+	}
+}
+.photo_list li a {
+	position: absolute;
+	display: block;
+	box-sizing: border-box;
+	width:100%;
+	height:100%;
+	padding:10px;
+	text-align: center;
+}
+
+.photo_list li img {
+	width: 100%;
+	height: 100%;
+}
+
+.photo_list .gif {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.photo_list .gif span {
+	display: inline-block;
+	margin-top: 34%;
+	padding:17px 10px;
+	border: 3px solid #fff;
+	border-radius: 100%;
+	font-weight: bold;
+	color: #fff;
+	font-size: 20px;
+	background: #00000036;
+}
+
+.login_area {
+	max-width: 400px;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+.login_area .name, .login_area .password{
+	box-sizing: border-box;
+	width:100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.login_area .name {
+	margin-bottom: 10px;
+}
+
+.login_area .password {
+	margin-bottom: 5px;
+}
+
+.login_area .checkbox, .login_area label {
+	vertical-align: middle;
+}
+
+.login_area button {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	margin: 20px 0 8px;
+	background: #00ba91;
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 16px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.login_area .member_join { 
+	font-size:14px;
+	color:#00ba91;
+}
+
+.login_area .member_join:hover { 
+	color:#078c6e;
+}
+
+.member_join_area {
+	position: relative;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.member_join_area .idcheck {
+	position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 59px;
+    height: 27px;
+    border-radius: 5px;
+    line-height: 27px;
+    text-align: center;
+    text-decoration: none;
+    background: #00ba91;
+    color: #fff;
+}
+
+.member_join_area .inp {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 8px;
+	border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.member_join_area .img_box {
+	text-align: center;
+}
+
+.member_join_area .img_box img {
+	max-width: 100%;
+}
+
+.img_box .notice {
+	margin-top: 5px;
+    color: #00ba91;
+}
+
+.member_join_area button {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0 8px;
+    background: #00ba91;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.file_upload_area { 
+	max-width: 400px;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+.file_upload_area .img_box { 
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.file_upload_area .img_box img {
+	max-width: 300px;
+	height: auto;
+}
+
+.file_upload_area input {
+	width: 100%;
+}
+
+.file_upload_area .tag {
+	box-sizing: border-box;
+	width: 100%;
+	padding:10px;
+	margin: 10px 0 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.file_upload_area .notice1 {
+	color: #3498db;
+	letter-spacing: -1px;
+}
+
+.file_upload_area button {
+	    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0 5px;
+    background: #00ba91;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.file_upload_area .notice2 {
+	color: red;
+	letter-spacing: -1px;
+}
+
+.detailphoto_area {
+	padding:40px 10px;
+	margin:20px 0; 
+	background:#ececec;
+}
+
+.detailphoto_area > div {
+	margin:0 auto;
+	text-align: center;
+}
+
+.detailphoto_area .list_img_box {
+	margin-bottom: 30px;
+}
+
+.detailphoto_area .list_img_box p{
+	font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+.detailphoto_area .list_img_box img {
+	max-width: 250px;
+	height: auto;
+}
+
+.detailphoto_area .img_box {
+	margin-bottom:20px;
+}
+
+
+.detailphoto_area .img_box .notice {
+	margin-top: 5px;
+    color: #00ba91;
+}
+
+.detailphoto_area .img_box p {
+	font-size: 14px;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.detailphoto_area .img_box img {
+	max-width: 300px;
+	height: auto;
+}
+
+.detailphoto_area .img_box.full_size img {
+	max-width: 100%;
+}
+
+.detailphoto_area .tag_list {
+	padding:0 20px;
+	text-align: center;
+}
+
+.detailphoto_area .tag_list a {
+	background: #fff;
+	color: #555;
+}
+
+.detailphoto_area .tag_list a:hover {
+	background: #00ba91;
+	color: #fff;
+}
+
+.detailphoto_area .tag_list a.del {
+	margin-right: 10px;
+	background: #f98282;
+	font-weight: bold;
+    color: #fff;
+}
+
+.detailphoto_area .tag_list a.del:hover {
+	background: #ff3d3d;
+}
+
+.detailphoto_area .edit_box {
+	margin: 5px 0 20px;
+}
+
+.detailphoto_area .edit_box input {
+	box-sizing: border-box;
+	padding: 10px;
+	height: 37px;
+	width: 200px;
+	line-height: 37px;
+	border: 1px solid #00ba91;
+	border-radius: 5px 0 0 5px;
+	vertical-align: middle;
+}
+
+.detailphoto_area .edit_box button {
+	box-sizing: border-box;
+	height: 37px;
+	padding: 0 10px;
+	width: 100px;
+	margin-left: 0;
+	border: 1px solid #00ba91;
+	border-radius: 0 5px 5px 0;
+	background: #00ba91;
+	color: #fff;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.detailphoto_area .edit_box button:hover {
+	background: #009877;
+}
+
+.down_box a { 
+	display: block;
+	box-sizing: border-box;
+	width: 300px;
+	height: 40px;
+	margin: 0 auto;
+	line-height: 40px;
+	background: #03a9f4;
+	text-decoration: none;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+}
+
+.down_box a:hover{
+	background: #0085c1;
+}

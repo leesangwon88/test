@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ree.zzamoa.testMapper">
+
+<insert id="member_write" parameterType="com.ree.zzamoa.Member">
+	insert into zzamoa_member values(#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_photo}, #{mb_master})
+</insert>
+
+<select id="getMemberById" resultType="com.ree.zzamoa.Member">
+	select * from zzamoa_member where mb_id=#{mb_id}
+</select>
+
+<update id="updateMember" parameterType="com.ree.zzamoa.Member">
+	update zzamoa_member set mb_pw=#{mb_pw}, mb_name=#{mb_name}, mb_photo=#{mb_photo} where mb_id=#{mb_id}
+</update>
+
+<insert id="photolist_write" parameterType="com.ree.zzamoa.PhotoList">
+	insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, #{pl_photo}, #{pl_thumbnail}, #{pl_tag}, #{pl_view}, sysdate)
+</insert>
+
+<select id="getPhotolist" resultType="com.ree.zzamoa.PhotoList">
+	select * from zzamoa_photolist
+</select>
+
+<select id="searchPhotolist" parameterType="com.ree.zzamoa.PhotoList" resultType="com.ree.zzamoa.PhotoList">
+	select * from zzamoa_photolist where pl_tag like '%'||#{pl_tag}||'%'
+</select>
+
+<select id="detailPhotolist" parameterType="com.ree.zzamoa.PhotoList" resultType="com.ree.zzamoa.PhotoList">
+	select * from zzamoa_photolist where pl_number like #{pl_number}
+</select>
+
+<update id="updatePhotoTag" parameterType="com.ree.zzamoa.PhotoList">
+	update zzamoa_photolist set pl_tag=#{pl_tag} where pl_number=#{pl_number}
+</update>
+
+<update id="updateThumbnail" parameterType="com.ree.zzamoa.PhotoList">
+	update zzamoa_photolist set pl_thumbnail=#{pl_thumbnail} where pl_number=#{pl_number}
+</update>
+
+<delete id="PhotoDel" parameterType="com.ree.zzamoa.PhotoList">
+	delete from zzamoa_photolist where pl_number=#{pl_number}
+</delete>
+
+<select id="getPhotolistPage" parameterType="com.ree.zzamoa.PhotoListNo" resultType="com.ree.zzamoa.PhotoList">
+	select * from (select rownum as rn, pl_number, pl_photo, pl_thumbnail, pl_tag 
+	from (select * from zzamoa_photolist order by pl_date )) 
+	where rn &lt;= #{start} and rn &gt;= #{end} order by rn desc
+</select>
+
+<delete id="memberDel" parameterType="com.ree.zzamoa.Member">
+	delete from zzamoa_member where mb_id=#{mb_id}
+</delete>
+
+</mapper>
