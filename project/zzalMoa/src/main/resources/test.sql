@@ -24,6 +24,24 @@ drop table zzamoa_member cascade constraint purge;
 
 ----------------------------------------------------
 
+create table zzamoa_Tag(
+	tag_type char primary key,
+	tag_list varchar2(200 char) not null
+)
+
+select * from zzamoa_Tag
+
+insert into zzamoa_Tag values(0, '태그 태그2 태그3 태그4')
+
+update zzamoa_Tag set tag_list='안태그1 안태그2 김태그' where tag_type = 0
+
+delete from zzamoa_Tag
+
+drop table zzamoa_Tag cascade constraint purge;
+
+
+----------------------------------------------------
+
 create table zzamoa_photolist(
 	pl_number number(5) primary key,
 	pl_photo varchar2(200 char) not null,
@@ -105,9 +123,3 @@ insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '28.gif', '0',
 insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '29.gif', '0', '움짤 동물 귀여움', '0', sysdate);
 insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '30.gif', '0', '움짤 동물 귀여움', '0', sysdate);
 insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '31.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-
-
-
-
-
-

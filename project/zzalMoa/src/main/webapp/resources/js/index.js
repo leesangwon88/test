@@ -7,6 +7,38 @@ $(function(){
 	});	
 });
 
+function listScroll(){
+	$.getJSON("PhotoList.AJAX.get?page=1", function(data){
+		var dp = data.photolist;
+		var plHTML = "";
+		$.each(dp, function(i, s){
+			plHTML += "<li><a href='photoDetail?pl_number="+ s.pl_number +"'>"
+			
+			if(s.pl_photo.indexOf(".gif") != -1){
+				plHTML += "<span class='gif'><span>움짤</span></span>";
+			}
+			
+			if(s.pl_thumbnail != '0'){
+				plHTML +="<img src='resources/photo/" + s.pl_thumbnail + "'>";
+			} else {
+				plHTML +="<img src='resources/photo/" + s.pl_photo + "'>";
+			}
+			plHTML += "</a></li>";
+		});
+		$(".photo_list ul").append(plHTML);
+	});
+	
+	var delta = 300;
+	var timer = null;
+		
+	$(window).on('scroll', function(){
+		if ($(document).height() <= $(window).scrollTop() + $(window).height() + 100 ){
+			clearTimeout(timer);
+			timer = setTimeout(photolistGet, delta);
+		}
+	});
+}
+
 function photolistGet(){
 	allPage = $(".photo_list > ul").data("page");
 	if(allPage >= page){
@@ -44,6 +76,18 @@ function tag(data){
 	$(".detailphoto_area .tag_list").html(addTag);
 }
 
+function tagList(data){
+	console.log(data);
+	var tagList = data.split(" ");
+	var addTag = "";
+	for (var i = 0; i < tagList.length; i++) {
+		if(tagList[i] != ""){
+			addTag += '<a href="photolist.search?pl_tag='+ tagList[i] +'">' + tagList[i] +'</a>';
+		}
+	}
+	$(".search_area .tag_list").html(addTag);
+}
+
 function tagEdit(data){
 	console.log(data);
 	var tagList = data.split(" ");
@@ -57,36 +101,63 @@ function tagEdit(data){
 }
 
 function tagDel(data, del){
+	if(data == del){
+		alert("태그는 최소 한개가 존재해야 합니다.")
+		return false;
+	}
 	data = data.replace(del, "");
-	var pl_number = $(".pl_number").val();
-	location.href = "photoTag.upload?pl_number="+ pl_number +"&pl_tag="+ data;
+	data = $.trim(data);
+	if(data == null){
+		alert("태그는 최소 한개가 존재해야 합니다.")
+		return false;
+	}
+	tagUploadAXJA(data);			
 }
 
 function tagUploadCheck(){
-	var tagBaisc = $(".pl_tag_basic").val();
+	var tagBaiscs = $(".pl_tag_basic").val();
+	var tagBaisc = tagBaiscs.split(" ");
 	var tagAdds = $(".pl_tag").val();
+	tagAdds = $.trim(tagAdds);
+	if(tagAdds == ""){
+		alert("정상적인 태그를 입력해주세요.");
+		return false;
+	}
+	
 	var tagAdd = tagAdds.split(" ");
 	
-	for (var i = 0; i < tagAdd.length; i++) {
-		if(tagBaisc.match(tagAdd[i])){
-			alert("동일한 태그가 존재합니다.");
-			return false;
+	for (var i = 0; i < tagBaisc.length; i++) {
+		for(var j = 0; j < tagAdd.length; j++){
+			if(tagBaisc[i] == tagAdd[j]){
+				alert("동일한 태그가 존재합니다.");
+				return false;				
+			}
 		}
 	}
 	
 	var tagListCheck = [];
-	
 	$.each(tagAdd, function(i, el){
 		if($.inArray(el, tagListCheck) == -1) tagListCheck.push(el);
 	});
 	tagListCheck = tagListCheck.join(" ");
 	tagAdds = tagListCheck;
-	
-	
+	tagBaiscs = tagBaiscs + " " + tagAdds;
+	tagBaiscs = $.trim(tagBaiscs);
+	tagUploadAXJA(tagBaiscs);
+}
+
+function tagUploadAXJA(tag){
 	var pl_number = $(".pl_number").val();
-	tagBaisc = tagBaisc + " " + tagAdds;
-	location.href = "photoTag.upload?pl_number="+ pl_number +"&pl_tag="+ tagBaisc;
-	return true;
+	var json = "photoTag.upload?pl_number="+ pl_number +"&pl_tag="+ tag
+	$.getJSON(json, function(data){
+		var master = $(".detailphoto_area .tag_list").data("master");
+		if(master == "1"){			
+			tagEdit(data.pl_tag);
+		} else {
+			tag(data.pl_tag);			
+		}
+		$(".pl_tag_basic").val(tag);
+	});
 }
 
 function LoadImg(value) {
@@ -98,7 +169,6 @@ function LoadImg(value) {
 		reader.readAsDataURL(value.files[0]);
 	}
 }
-
 
 function memberDel(id) {
 	var r = confirm("정말 계정을 삭제하시겠습니까?");
@@ -119,10 +189,11 @@ function memberDel(id) {
 	}
 }
 
-
-
-
-
+function enterkey() {
+    if (window.event.keyCode == 13) {
+    	tagUploadCheck();
+    }
+}
 
 
 

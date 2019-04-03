@@ -52,4 +52,14 @@
 	delete from zzamoa_member where mb_id=#{mb_id}
 </delete>
 
+<select id="getTagList" resultType="com.ree.zzamoa.TagList">
+	select * from zzamoa_Tag
+</select>
+
+<update id="updateTagList" parameterType="com.ree.zzamoa.TagList">
+	update zzamoa_Tag set tag_list=#{tag_list} where tag_type = 0
+</update>
+
+
+
 </mapper>

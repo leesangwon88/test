@@ -7,6 +7,7 @@ public interface testMapper {
 	public abstract Member getMemberById(Member mb);
 	public abstract int updateMember(Member mb);
 	public abstract int memberDel(Member mb);
+	
 	public abstract int photolist_write(PhotoList pl);
 	public abstract List<PhotoList> getPhotolist(PhotoList pl);
 	public abstract List<PhotoList> getPhotolistPage(PhotoListNo pln);
@@ -15,4 +16,7 @@ public interface testMapper {
 	public abstract int updatePhotoTag(PhotoList pl);
 	public abstract int updateThumbnail(PhotoList pl);
 	public abstract int PhotoDel(PhotoList pl);
+	
+	public abstract TagList getTagList();
+	public abstract int updateTagList(TagList tl);
 }

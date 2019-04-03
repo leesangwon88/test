@@ -13,17 +13,15 @@
 			</form>
 		</div>
 		<div class="tag_list">
-			<a href="photolist.search?pl_tag=박명수">박명수</a>
-			<a href="photolist.search?pl_tag=보노보노">보노보노</a>
-			<a href="photolist.search?pl_tag=전체">전체</a>
-			<a href="photolist.search?pl_tag=명언">명언</a>
 		</div>
 	</div>
+	<script type="text/javascript">
+		tagList('${tag.tag_list}');
+	</script>
 	<div class="detailphoto_area">
 		<div>
 			<div class="list_img_box">
 				<p>대표이미지</p>
-				
 					<c:choose>
 						<c:when test="${detailPhoto.pl_thumbnail ne '0'}">
 							<img class="change_img" src="resources/photo/${detailPhoto.pl_thumbnail}">
@@ -44,7 +42,7 @@
 				<p>상세이미지</p>
 				<img src="resources/photo/${detailPhoto.pl_photo}">
 			</div>
-			<div class="tag_list">
+			<div class="tag_list" data-master="${sessionScope.loginMember.mb_master}">
 				<script type="text/javascript">
 					tagEdit("${detailPhoto.pl_tag}");
 				</script>
@@ -52,30 +50,18 @@
 			<div class="edit_box">
 				<input type="hidden" value="${detailPhoto.pl_number}" name="pl_number" class="pl_number">
 				<input type="hidden" value="${detailPhoto.pl_tag}" name="pl_tag_basic" class="pl_tag_basic">
-				<input type="text" name="pl_tag" placeholder="태그를 추가해주세요" class="pl_tag"><button onclick="return tagUploadCheck();">태그추가</button>
+				<input type="text" name="pl_tag" placeholder="태그를 추가해주세요" class="pl_tag" onkeyup="enterkey();"><button onclick="return tagUploadCheck();">태그추가</button>
 				<a href="photo.del?pl_number=${detailPhoto.pl_number}" class="btn_del">이 글 삭제</a>
 			</div>
 		</div>
 	</div>
 	<div class="photo_list">
-		<ul class="clear">
-			<c:forEach var="p" items="${photoLists}">
-				<li><a href="photoDetail?pl_number=${p.pl_number}">
-				<c:if test="${fn:contains(p.pl_photo, '.gif')}">
-					<span class="gif"><span>움짤</span></span>
-				</c:if>
-				<c:choose>
-					<c:when test="${p.pl_thumbnail ne '0'}">
-						<img src="resources/photo/${p.pl_thumbnail}">
-					</c:when>
-					<c:when test="${p.pl_thumbnail eq '0'}">
-						<img src="resources/photo/${p.pl_photo}">
-					</c:when>
-				</c:choose>
-				</a></li>
-			</c:forEach>
+		<ul class="clear" data-page='${pageCount}'>
 		</ul>
 	</div>
 </div>
+<script>
+listScroll();
+</script>
 </body>
 </html>

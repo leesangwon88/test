@@ -407,7 +407,7 @@ top: 11px;
 }
 
 .detailphoto_area {
-	padding:40px 10px;
+	padding:20px 10px;
 	margin:20px 0; 
 	background:#ececec;
 }
@@ -518,6 +518,27 @@ top: 11px;
 
 .detailphoto_area .edit_box button:hover {
 	background: #009877;
+}
+
+.detailphoto_area .edit_box .btn_del {
+    display: block;
+    box-sizing: border-box;
+    height: 37px;
+    padding: 0 10px;
+    width: 300px;
+    margin: 30px auto 0;
+    border-radius: 5px;
+    background: #f95b5b;
+    line-height: 37px;
+    color: #fff;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.detailphoto_area .edit_box .btn_del:hover {
+    background: #ea3636;
 }
 
 .down_box a { 

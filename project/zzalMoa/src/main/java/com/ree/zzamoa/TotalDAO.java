@@ -256,6 +256,8 @@ public class TotalDAO {
 		double count = 21.0;
 		req.setAttribute("curPage", pageNo);
 
+		tagList(req);
+		
 		if (searchPhotolists != null && searchPhotolists.size() > 0) {
 			
 			int pageCount = (int) Math.ceil(searchPhotolists.size() / count);
@@ -297,9 +299,10 @@ public class TotalDAO {
 		
 	}
 	
-	public void detailPhoto(PhotoList pl, HttpServletRequest req) {
+	public PhotoList detailPhoto(PhotoList pl, HttpServletRequest req) {
 		PhotoList detailPhoto = ss.getMapper(testMapper.class).detailPhotolist(pl);
 		req.getSession().setAttribute("detailPhoto", detailPhoto);
+		return detailPhoto;
 	}
 	
 	public void updateReply(PhotoList pl, HttpServletRequest req) {
@@ -379,5 +382,23 @@ public class TotalDAO {
 		}
 	}
 	
+	
+	public void tagList(HttpServletRequest req) {
+		TagList tag = ss.getMapper(testMapper.class).getTagList();
+		System.out.println(tag);
+		req.setAttribute("tag", tag);
+	}
+	
+	public void updatetagList(TagList tl, HttpServletRequest req) {
+		System.out.println(tl.getTag_list());
+		try {
+			if (ss.getMapper(testMapper.class).updateTagList(tl) == 1) {
+				req.setAttribute("r", "태그수정 성공");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "태그수정 실패");
+		}
+	}
 	
 }

@@ -148,18 +148,22 @@ public class HomeController {
 		}
 		return "detailphoto";
 	}
-
-	@RequestMapping(value = "/photoTag.upload", method = RequestMethod.GET)
-	public String photoTagUpload(PhotoList pl, HttpServletRequest req, HttpServletResponse res) {
-		tDAO.loginCheck(req);
-		tDAO.updateReply(pl, req);
-		tDAO.detailPhoto(pl, req);
-		tDAO.paging(1, pl, req);
-		if(tDAO.masterCheck(req)){
-			return "detailphotoEdit";
+	
+	@RequestMapping(value = "/photoTag.upload", method = RequestMethod.GET, produces="application/json; charset=utf-8")
+	public @ResponseBody String photoTagUpload(PhotoList pl, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			tDAO.updateReply(pl, req);
+			pl = tDAO.detailPhoto(pl, req);
+			ObjectMapper om = new ObjectMapper();
+			String s2 = new String(om.writeValueAsBytes(pl), "utf-8");
+			String result = s2;
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return "detailphoto";	
+		return null;
 	}
+		
 	
 	@RequestMapping(value = "/photoDetailEdit.go", method = RequestMethod.GET)
 	public String photoDetailEditGO(PhotoList pl, HttpServletRequest req, HttpServletResponse res) {
@@ -193,7 +197,6 @@ public class HomeController {
 		}
 	}
 
-	
 	@RequestMapping(value = "/photo.del", method = RequestMethod.GET)
 	public String photoDel(PhotoList pl, HttpServletRequest req, HttpServletResponse res) {
 		if(tDAO.loginCheck(req)){
@@ -227,6 +230,31 @@ public class HomeController {
 		
 		return tDAO.idCheck(mb, req);
 		
+	}
+	
+	@RequestMapping(value = "/master.edit", method = RequestMethod.GET)
+	public String masterEdit(PhotoList pl, TagList tl, HttpServletRequest req) {
+		if(tDAO.loginCheck(req)){
+			if(tDAO.masterCheck(req)){
+				tDAO.tagList(req);
+				return "masterEdit";
+			}
+		}
+		tDAO.paging(1, pl, req);
+		return "index";
+	}
+	
+	@RequestMapping(value = "/master.tagUpdate", method = RequestMethod.GET)
+	public String masterTagUpdate(PhotoList pl, TagList tl, HttpServletRequest req) {
+		if(tDAO.loginCheck(req)){
+			if(tDAO.masterCheck(req)){
+				tDAO.updatetagList(tl, req);
+				tDAO.tagList(req);
+				return "masterEdit";
+			}
+		}
+		tDAO.paging(1, pl, req);
+		return "index";
 	}
 	
 }
