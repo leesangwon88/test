@@ -55,7 +55,7 @@ select * from zzamoa_photolist;
 
 create sequence zzamoa_photolist_seq;
 
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, 'test.jpg', 'test.jpg', '테스트 테스트2', '0', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, 'test.jpg', 'test.jpg', '테스트 테스트2', '1', sysdate);
 
 select * from zzamoa_photolist where pl_tag like '%짤%'
 
@@ -63,6 +63,7 @@ select * from zzamoa_photolist where pl_number like '52'
 
 update zzamoa_photolist set pl_tag='보노보노 X같은' where pl_number = '72'
 
+update zzamoa_photolist set pl_view='1' where pl_number = '634'
 
 
 update zzamoa_photolist set pl_thumbnail='보노보노 X같은' where pl_number = '72'

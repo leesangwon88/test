@@ -16,6 +16,7 @@ public interface testMapper {
 	public abstract int updatePhotoTag(PhotoList pl);
 	public abstract int updateThumbnail(PhotoList pl);
 	public abstract int PhotoDel(PhotoList pl);
+	public abstract int updatePhotoView(PhotoList pl);
 	
 	public abstract TagList getTagList();
 	public abstract int updateTagList(TagList tl);

@@ -64,6 +64,59 @@ function photolistGet(){
 	}
 }
 
+function masterPage(){
+	$.getJSON("PhotoList.AJAX.get?page=1", function(data){
+		pagePullMaster(data);
+	});
+	
+	var delta = 300;
+	var timer = null;
+		
+	$(window).on('scroll', function(){
+		if ($(document).height() <= $(window).scrollTop() + $(window).height() + 100 ){
+			clearTimeout(timer);
+			timer = setTimeout(masterPageGet, delta);
+		}
+	});
+}
+
+function masterPageGet(){
+	allPage = $(".master_photolist").data("page");
+	if(allPage >= page){
+		$.getJSON("PhotoList.AJAX.get?page="+page, function(data){
+			pagePullMaster(data);
+			page++;
+		});
+	}
+}
+
+function pagePullMaster(data){
+	var dp = data.photolist;
+	var plHTML = "";
+	console.log(dp);
+	$.each(dp, function(i, s){
+		plHTML += "<tr><td class='number'>"+ s.pl_number +"</td>";
+		if(s.pl_thumbnail == "0"){
+			plHTML +="<td class='thnmbnail'>미등록</td>";
+		}else{
+			plHTML +="<td class='thnmbnail'><img src='resources/photo/" + s.pl_thumbnail + "'></td>";
+		}			plHTML +="<td class='photo'><a href='photoDetail?pl_number="+ s.pl_number +"'><img src='resources/photo/" + s.pl_photo + "'></a></td>";
+		plHTML += "<td class='tag'><input name='' value='"+ s.pl_tag +"'><button>수정</button></td>";
+		if(s.pl_view == "0"){
+			plHTML += "<td class='view'><input type='checkbox' name=''></td>";				
+		} else {				
+			plHTML += "<td class='view'><input type='checkbox' name='' checked></td>";				
+		}
+		plHTML += "</tr>";
+	});
+	$(".master_photolist").append(plHTML);
+}
+
+
+
+
+
+
 function tag(data){
 	console.log(data);
 	var tagList = data.split(" ");
@@ -193,6 +246,33 @@ function enterkey() {
     if (window.event.keyCode == 13) {
     	tagUploadCheck();
     }
+}
+
+$(document).on('click', '.master_photolist .tag button', function(){
+	var tagBaiscs = $(this).parent().find("input").val();
+	var pl_number = $(this).parent().parent().find(".number").html();
+	alert(tagBaiscs);
+	alert(pl_number);
+	
+	var tagBaisc = tagBaiscs.split(" ");
+
+	if(tagBaiscs == ""){
+		alert("정상적인 태그를 입력해주세요.");
+		return false;
+	}
+	var tagListCheck = [];
+	$.each(tagBaisc, function(i, el){
+		if($.inArray(el, tagListCheck) == -1) tagListCheck.push(el);
+	});
+	tagListCheck = tagListCheck.join(" ");
+	tagBaiscs = tagListCheck;
+	tagBaiscs = $.trim(tagBaiscs);
+	MasterTagUploadAXJA(tagBaiscs, pl_number);
+})
+
+function MasterTagUploadAXJA(tag, pl_number){
+	var json = "photoTag.upload?pl_number="+ pl_number +"&pl_tag="+ tag
+	$.getJSON(json, function(data){});
 }
 
 

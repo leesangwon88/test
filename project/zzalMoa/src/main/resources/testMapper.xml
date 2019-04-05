@@ -43,7 +43,7 @@
 </delete>
 
 <select id="getPhotolistPage" parameterType="com.ree.zzamoa.PhotoListNo" resultType="com.ree.zzamoa.PhotoList">
-	select * from (select rownum as rn, pl_number, pl_photo, pl_thumbnail, pl_tag 
+	select * from (select rownum as rn, pl_number, pl_photo, pl_thumbnail, pl_tag, pl_view 
 	from (select * from zzamoa_photolist order by pl_date )) 
 	where rn &lt;= #{start} and rn &gt;= #{end} order by rn desc
 </select>
@@ -60,6 +60,9 @@
 	update zzamoa_Tag set tag_list=#{tag_list} where tag_type = 0
 </update>
 
+<update id="updatePhotoView" parameterType="com.ree.zzamoa.PhotoList">
+	update zzamoa_photolist set pl_view=#{pl_view} where pl_number = #{pl_number}
+</update>
 
 
 </mapper>

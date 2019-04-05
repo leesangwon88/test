@@ -3,6 +3,7 @@ package com.ree.zzamoa;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.jdbc.Null;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -234,13 +235,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/master.edit", method = RequestMethod.GET)
 	public String masterEdit(PhotoList pl, TagList tl, HttpServletRequest req) {
+		tDAO.paging(1, pl, req);
 		if(tDAO.loginCheck(req)){
 			if(tDAO.masterCheck(req)){
 				tDAO.tagList(req);
 				return "masterEdit";
 			}
 		}
-		tDAO.paging(1, pl, req);
 		return "index";
 	}
 	
@@ -256,5 +257,12 @@ public class HomeController {
 		tDAO.paging(1, pl, req);
 		return "index";
 	}
+	
+	@RequestMapping(value = "/PhotoView.update", method = RequestMethod.GET, produces="application/json; charset=utf-8")
+	public @ResponseBody void PhotoViewUpdate(PhotoList pl, HttpServletRequest req) {
+		tDAO.updatePhotoView(pl, req);
+	}
+	
+	
 	
 }

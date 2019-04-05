@@ -10,27 +10,29 @@
 			</form>
 		</div>
 	</div>
-	<div class="">
+	<div class="master_photo_area">
 		<h3>게시글 관리</h3>
-		<table>
+		<table class="master_photolist" data-page='${pageCount}'>
 			<tr>
-				<th>번호</th>
-				<th>사진</th>
-				<th>썸네일</th>
-				<th>태그</th>
-				<th>게시</th>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>사진</td>
-				<td>썸넬</td>
-				<td><input type="text" value="기본 태그세팅"><button>수정</button></td>
-				<td><input type="checkbox"></td>
+				<th class="number">번호</th>
+				<th class="thnmbnail">썸네일</th>
+				<th class="photo">사진</th>
+				<th class="tag">태그</th>
+				<th class="view">게시</th>
 			</tr>
 		</table>
+		<!-- <a href="" onclick="" class="more">리스트 더보기</a> -->
 	</div>
-
-
 </div>
+<script type="text/javascript">
+	masterPage();
+	
+	$(document).on('click', '.master_photolist .view input', function(){
+		var inputCheck = ($(this).is(':checked')) ? "1" : "0";
+		var number = $(this).parent().parent().find(".number").html();
+		$.getJSON("PhotoView.update?pl_number="+ number +"&pl_view="+ inputCheck, function(data){});
+	})
+	
+</script>
 </body>
 </html>

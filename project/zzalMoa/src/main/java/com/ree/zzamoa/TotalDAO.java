@@ -291,8 +291,12 @@ public class TotalDAO {
 			System.out.println("마지막번호 : "+pln.getEnd());
 			List<PhotoList> photoLists = ss.getMapper(testMapper.class).getPhotolistPage(pln);
 			System.out.println("뿌려줄 데이터 :" + photoLists);
-
 			PhotoLists pl2 = new PhotoLists(photoLists);
+			
+			System.out.println("첫번쨰" + photoLists.get(0).getPl_view());
+			System.out.println("두번쨰" + photoLists.get(1).getPl_view());
+			System.out.println("세번쨰" + photoLists.get(2).getPl_view());
+			
 			System.out.println("------------------");
 			return pl2;
 		}
@@ -401,4 +405,17 @@ public class TotalDAO {
 		}
 	}
 	
+	public void updatePhotoView(PhotoList pl, HttpServletRequest req) {
+		try {
+			if (ss.getMapper(testMapper.class).updatePhotoView(pl) == 1) {
+				req.setAttribute("r", "뷰수정 성공");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "뷰수정 실패");
+		}
+	}
+	
 }
+
+
