@@ -278,29 +278,46 @@ public class TotalDAO {
 			
 		} else {
 			searchPhotolists = ss.getMapper(testMapper.class).getPhotolist(pl);
-			System.out.println("전체 데이터량" + searchPhotolists);
+			// System.out.println("전체 데이터량" + searchPhotolists);
 			int pageCount = (int) Math.ceil(searchPhotolists.size() / count);
-			System.out.println(pageCount);
+			// System.out.println(pageCount);
 			req.setAttribute("pageCount", pageCount);
 
 			int start = (searchPhotolists.size() - ((pageNo - 1) * (int) count));		
 			int end = (pageNo == pageCount) ? 1 : (start - ((int) count - 1));
 
 			PhotoListNo pln = new PhotoListNo(new BigDecimal(start), new BigDecimal(end));
-			System.out.println("시작번호 : "+pln.getStart());			
-			System.out.println("마지막번호 : "+pln.getEnd());
+			// System.out.println("시작번호 : "+pln.getStart());			
+			// System.out.println("마지막번호 : "+pln.getEnd());
 			List<PhotoList> photoLists = ss.getMapper(testMapper.class).getPhotolistPage(pln);
-			System.out.println("뿌려줄 데이터 :" + photoLists);
+			// System.out.println("뿌려줄 데이터 :" + photoLists);
 			PhotoLists pl2 = new PhotoLists(photoLists);
-			
-			System.out.println("첫번쨰" + photoLists.get(0).getPl_view());
-			System.out.println("두번쨰" + photoLists.get(1).getPl_view());
-			System.out.println("세번쨰" + photoLists.get(2).getPl_view());
-			
-			System.out.println("------------------");
 			return pl2;
 		}
+	}
+	
+	public PhotoLists MasterPaging(int pageNo, PhotoList pl, HttpServletRequest req) {
 		
+		double count = 21.0;
+		req.setAttribute("curPage", pageNo);
+		tagList(req);
+		
+		List<PhotoList> searchPhotolists = ss.getMapper(testMapper.class).getMasterPhotolist(pl);
+		System.out.println("마스터 전체 데이터량" + searchPhotolists);
+		int pageCount = (int) Math.ceil(searchPhotolists.size() / count);
+		System.out.println(pageCount);
+		req.setAttribute("마스터 pageCount", pageCount);
+
+		int start = (searchPhotolists.size() - ((pageNo - 1) * (int) count));		
+		int end = (pageNo == pageCount) ? 1 : (start - ((int) count - 1));
+
+		PhotoListNo pln = new PhotoListNo(new BigDecimal(start), new BigDecimal(end));
+		System.out.println("마스터 시작번호 : "+pln.getStart());			
+		System.out.println("마스터 마지막번호 : "+pln.getEnd());
+		List<PhotoList> photoLists = ss.getMapper(testMapper.class).getPhotolistMasterPage(pln);
+		System.out.println("마스터 뿌려줄 데이터 :" + photoLists);
+		PhotoLists pl2 = new PhotoLists(photoLists);
+		return pl2;
 	}
 	
 	public PhotoList detailPhoto(PhotoList pl, HttpServletRequest req) {

@@ -79,8 +79,8 @@ select * from(
 order by rn desc;
 
 	select * from (select rownum as rn, pl_number, pl_photo, pl_thumbnail, pl_tag 
-	from (select * from zzamoa_photolist order by pl_date )) 
-	where rn >= 31 and rn <= 52 order by rn desc;
+	from (select * from zzamoa_photolist where pl_view = '1' order by pl_date )) 
+	where rn >= 0 and rn <= 1000 order by rn desc;
 
 
 
@@ -93,34 +93,34 @@ drop table zzamoa_photolist cascade constraint purge;
 
 
 
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '1.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '2.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '3.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '4.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '5.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '6.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '7.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '8.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '9.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '10.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '11.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '12.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '13.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '14.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '15.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '16.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '17.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '18.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '19.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '20.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '21.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '22.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '23.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '24.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '25.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '26.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '27.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '28.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '29.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '30.gif', '0', '움짤 동물 귀여움', '0', sysdate);
-insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '31.gif', '0', '움짤 동물 귀여움', '0', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '1.gif', 's1.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '2.gif', 's2.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '3.gif', 's3.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '4.gif', 's4.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '5.gif', 's5.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '6.gif', 's6.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '7.gif', 's7.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '8.gif', 's8.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '9.gif', 's9.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '10.gif', 's10.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '11.gif', 's11.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '12.gif', 's12.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '13.gif', 's13.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '14.gif', 's14.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '15.gif', 's15.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '16.gif', 's16.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '17.gif', 's17.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '18.gif', 's18.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '19.gif', 's19.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '20.gif', 's20.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '21.gif', 's21.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '22.gif', 's22.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '23.gif', 's23.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '24.gif', 's24.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '25.gif', 's25.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '26.gif', 's26.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '27.gif', 's27.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '28.gif', 's28.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '29.gif', 's29.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '30.gif', 's30.jpg', '움짤 동물 귀여움', '1', sysdate);
+insert into zzamoa_photolist values(zzamoa_photolist_seq.nextval, '31.gif', 's31.jpg', '움짤 동물 귀여움', '1', sysdate);

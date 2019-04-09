@@ -2,16 +2,15 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="${headerPage}"></jsp:include>
 <div id="cnt">
-	<div class="">
+	<div class="master_tag">
 		<h3>검색 태그 세팅</h3>
-		<div>
+		<div class="edit_box">
 			<form action="master.tagUpdate">
 				<input type="text" value="${tag.tag_list}" name="tag_list"><button>수정</button>			
 			</form>
 		</div>
 	</div>
 	<div class="master_photo_area">
-		<h3>게시글 관리</h3>
 		<table class="master_photolist" data-page='${pageCount}'>
 			<tr>
 				<th class="number">번호</th>

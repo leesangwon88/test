@@ -19,6 +19,10 @@
 </insert>
 
 <select id="getPhotolist" resultType="com.ree.zzamoa.PhotoList">
+	select * from zzamoa_photolist  where pl_view = '1'
+</select>
+
+<select id="getMasterPhotolist" resultType="com.ree.zzamoa.PhotoList">
 	select * from zzamoa_photolist
 </select>
 
@@ -42,7 +46,14 @@
 	delete from zzamoa_photolist where pl_number=#{pl_number}
 </delete>
 
+
 <select id="getPhotolistPage" parameterType="com.ree.zzamoa.PhotoListNo" resultType="com.ree.zzamoa.PhotoList">
+	select * from (select rownum as rn, pl_number, pl_photo, pl_thumbnail, pl_tag, pl_view 
+	from (select * from zzamoa_photolist where pl_view = '1' order by pl_date )) 
+	where rn &lt;= #{start} and rn &gt;= #{end} order by rn desc
+</select>
+
+<select id="getPhotolistMasterPage" parameterType="com.ree.zzamoa.PhotoListNo" resultType="com.ree.zzamoa.PhotoList">
 	select * from (select rownum as rn, pl_number, pl_photo, pl_thumbnail, pl_tag, pl_view 
 	from (select * from zzamoa_photolist order by pl_date )) 
 	where rn &lt;= #{start} and rn &gt;= #{end} order by rn desc

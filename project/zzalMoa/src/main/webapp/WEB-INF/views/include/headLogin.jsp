@@ -32,6 +32,9 @@
    			<span>${sessionScope.loginMember.mb_id}</span>
    		</a>
         <a href="logout" class="logout btn">로그아웃</a>
+        <c:if test="${lm.mb_master eq '1'}">
+        	<a href="master.edit" class="master btn">관리자</a>
+        </c:if>
         <a href="fileUpload.go" class="upload btn">사진 업로드</a>
 		<!-- <a href="" class="menu btn">목록</a> -->
 	</div>

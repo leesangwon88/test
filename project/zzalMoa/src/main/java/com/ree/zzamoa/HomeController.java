@@ -213,7 +213,16 @@ public class HomeController {
 		try{
 			String page = req.getParameter("page");
 			int page2 = Integer.parseInt(page);
-			PhotoLists ps = tDAO.paging(page2, pl, req);
+			String type = req.getParameter("type"); 
+			System.out.println("타입값: " + type);
+			PhotoLists ps = null;
+			if( !(type == null) && type.equals("master")){
+				ps = tDAO.MasterPaging(page2, pl, req);		
+				System.out.println("마스터로 실행됩니다.");
+			} else {
+				ps = tDAO.paging(page2, pl, req);
+			}
+			
 			ObjectMapper om = new ObjectMapper();
 			String s2 = new String(om.writeValueAsBytes(ps), "utf-8");
 			String result = s2;

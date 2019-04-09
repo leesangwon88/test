@@ -65,7 +65,7 @@ function photolistGet(){
 }
 
 function masterPage(){
-	$.getJSON("PhotoList.AJAX.get?page=1", function(data){
+	$.getJSON("PhotoList.AJAX.get?page=1&type=master", function(data){
 		pagePullMaster(data);
 	});
 	
@@ -83,7 +83,7 @@ function masterPage(){
 function masterPageGet(){
 	allPage = $(".master_photolist").data("page");
 	if(allPage >= page){
-		$.getJSON("PhotoList.AJAX.get?page="+page, function(data){
+		$.getJSON("PhotoList.AJAX.get?page="+page+"&type=master", function(data){
 			pagePullMaster(data);
 			page++;
 		});
@@ -101,7 +101,7 @@ function pagePullMaster(data){
 		}else{
 			plHTML +="<td class='thnmbnail'><img src='resources/photo/" + s.pl_thumbnail + "'></td>";
 		}			plHTML +="<td class='photo'><a href='photoDetail?pl_number="+ s.pl_number +"'><img src='resources/photo/" + s.pl_photo + "'></a></td>";
-		plHTML += "<td class='tag'><input name='' value='"+ s.pl_tag +"'><button>수정</button></td>";
+		plHTML += "<td class='tag edit_box'><input name='' value='"+ s.pl_tag +"'><button>수정</button></td>";
 		if(s.pl_view == "0"){
 			plHTML += "<td class='view'><input type='checkbox' name=''></td>";				
 		} else {				
@@ -251,9 +251,6 @@ function enterkey() {
 $(document).on('click', '.master_photolist .tag button', function(){
 	var tagBaiscs = $(this).parent().find("input").val();
 	var pl_number = $(this).parent().parent().find(".number").html();
-	alert(tagBaiscs);
-	alert(pl_number);
-	
 	var tagBaisc = tagBaiscs.split(" ");
 
 	if(tagBaiscs == ""){
@@ -268,6 +265,7 @@ $(document).on('click', '.master_photolist .tag button', function(){
 	tagBaiscs = tagListCheck;
 	tagBaiscs = $.trim(tagBaiscs);
 	MasterTagUploadAXJA(tagBaiscs, pl_number);
+	alert("정상적으로 수정되었습니다.");
 })
 
 function MasterTagUploadAXJA(tag, pl_number){
