@@ -41,13 +41,11 @@
 	</div>
 	<div class="photo_list">
 		<ul class="clear" data-page='${pageCount}'>
-			
 		</ul>
 	</div>
 </div>
 <script>
 listScroll();
-
 </script>
 </body>
 </html>

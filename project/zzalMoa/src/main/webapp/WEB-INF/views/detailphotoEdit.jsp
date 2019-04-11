@@ -53,6 +53,9 @@
 				<input type="text" name="pl_tag" placeholder="태그를 추가해주세요" class="pl_tag" onkeyup="enterkey();"><button onclick="return tagUploadCheck();">태그추가</button>
 				<a href="photo.del?pl_number=${detailPhoto.pl_number}" class="btn_del">이 글 삭제</a>
 			</div>
+			<div class="down_box">
+				<a href='resources/photo/${detailPhoto.pl_photo}' download="${detailPhoto.pl_photo}">저장</a>
+			</div>
 		</div>
 	</div>
 	<div class="photo_list">

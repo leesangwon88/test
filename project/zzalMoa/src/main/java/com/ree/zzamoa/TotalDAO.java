@@ -1,6 +1,7 @@
 package com.ree.zzamoa;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -10,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -212,7 +214,7 @@ public class TotalDAO {
 		}
 	}
 	
-	public void photoWrite(PhotoList pl, HttpServletRequest req) {
+	public void photoWrite(PhotoList pl, HttpServletRequest req, HttpServletResponse res) {
 		try {
 			String path = req.getSession().getServletContext().getRealPath("resources/photo");
 			System.out.println(path);
@@ -234,6 +236,8 @@ public class TotalDAO {
 			if (ss.getMapper(testMapper.class).photolist_write(pl) == 1) {
 				req.setAttribute("r", "사진업로드 성공");
 			}
+			res.sendRedirect("http://172.16.4.21/zzamoa/");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("r", "사진업로드 실패");
@@ -253,7 +257,7 @@ public class TotalDAO {
 		@SuppressWarnings("unchecked")
 		List<PhotoList> searchPhotolists = (List<PhotoList>) req.getSession().getAttribute("searchPhotolists");
 		
-		double count = 21.0;
+		double count = 14.0;
 		req.setAttribute("curPage", pageNo);
 
 		tagList(req);
@@ -298,7 +302,7 @@ public class TotalDAO {
 	
 	public PhotoLists MasterPaging(int pageNo, PhotoList pl, HttpServletRequest req) {
 		
-		double count = 21.0;
+		double count = 10.0;
 		req.setAttribute("curPage", pageNo);
 		tagList(req);
 		
@@ -430,6 +434,15 @@ public class TotalDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("r", "뷰수정 실패");
+		}
+	}
+	
+	public void RedirectMain(HttpServletResponse res) {
+		try {
+			res.sendRedirect("http://172.16.4.21/zzamoa/");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

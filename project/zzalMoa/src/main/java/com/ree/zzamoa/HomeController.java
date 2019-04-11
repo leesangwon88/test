@@ -1,5 +1,7 @@
 package com.ree.zzamoa;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,9 +49,13 @@ public class HomeController {
 	@RequestMapping(value = "/login.check", method = RequestMethod.POST)
 	public String loginCheck(PhotoList pl, Member mb, HttpServletRequest req, HttpServletResponse res) {
 		tDAO.login(mb, req, res);
-		tDAO.loginCheck(req);
-		tDAO.paging(1, pl, req);
-		return "index";
+		if(tDAO.loginCheck(req)){
+			tDAO.RedirectMain(res);
+			return "index";
+		}else{
+			return "login";			
+		}
+		
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -90,6 +96,8 @@ public class HomeController {
 			return "index";
 		}else{
 			tDAO.memberWrite(mb, req, res);
+			System.out.println("멤버쓰기 확인하기");
+			tDAO.RedirectMain(res);
 			return "index";
 		}
 	}
@@ -100,6 +108,7 @@ public class HomeController {
 			tDAO.memberDel(mb, req);
 		}
 		tDAO.logout(req, res);
+		tDAO.RedirectMain(res);
 		tDAO.loginCheck(req);
 		tDAO.searchClear(req);
 		tDAO.paging(1, pl, req);
@@ -119,7 +128,7 @@ public class HomeController {
 	@RequestMapping(value = "/photoWrite", method = RequestMethod.POST)
 	public String photoWrite(PhotoList pl, HttpServletRequest req, HttpServletResponse res) {
 		if(tDAO.loginCheck(req)){
-			tDAO.photoWrite(pl, req);
+			tDAO.photoWrite(pl, req, res);
 			tDAO.searchClear(req);
 			tDAO.paging(1, pl, req);
 			return "index";
